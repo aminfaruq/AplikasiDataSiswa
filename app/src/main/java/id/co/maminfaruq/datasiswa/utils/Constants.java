@@ -4,6 +4,10 @@ public class Constants {
     // Base url
     public static final String BASE_URL = "http://192.168.70.254/data_siswa/";
     public static final String KEY_LOGIN = "KEY_LOGIN";
+    public static final int STORAGE_PERMISSION_CODE = 1;
+    public static final int REQUEST_CODE = 2;
+    public static final String KEY_EXTRA_ID_MAKANAN = "KEY_EXTRA_ID_MAKANAN";
+    public static final String KEY_EXTRA_ID_CATEGORY = "KEY_EXTRA_ID_CATEGORY";
 
     // KEY UNTUK SHARED PREFERENCE
     public static String pref_name = "PREF_LOGIN";

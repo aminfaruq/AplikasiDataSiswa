@@ -37,6 +37,7 @@ public class HomePresenter implements HomeContract.Presenter {
 
             @Override
             public void onFailure(Call<KelasResponse> call, Throwable t) {
+                view.hideProgress();
 
             }
         });
@@ -52,6 +53,7 @@ public class HomePresenter implements HomeContract.Presenter {
         call.enqueue(new Callback<KelasResponse>() {
             @Override
             public void onResponse(Call<KelasResponse> call, Response<KelasResponse> response) {
+                view.hideProgress();
                 if (response.body() != null) {
                     view.showkelasPopulerList(response.body().getData());
                 }
@@ -59,6 +61,7 @@ public class HomePresenter implements HomeContract.Presenter {
 
             @Override
             public void onFailure(Call<KelasResponse> call, Throwable t) {
+                view.hideProgress();
 
             }
         });
@@ -72,6 +75,7 @@ public class HomePresenter implements HomeContract.Presenter {
         call.enqueue(new Callback<KelasResponse>() {
             @Override
             public void onResponse(Call<KelasResponse> call, Response<KelasResponse> response) {
+                view.hideProgress();
                 if (response.body() != null) {
                     view.showKelasKategoriList(response.body().getData());
                 }
@@ -79,6 +83,7 @@ public class HomePresenter implements HomeContract.Presenter {
 
             @Override
             public void onFailure(Call<KelasResponse> call, Throwable t) {
+                view.hideProgress();
 
             }
         });

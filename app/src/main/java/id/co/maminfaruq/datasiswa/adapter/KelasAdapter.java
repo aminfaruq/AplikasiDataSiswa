@@ -25,7 +25,7 @@ import id.co.maminfaruq.datasiswa.R;
 import id.co.maminfaruq.datasiswa.model.login.kelas.KelasData;
 import id.co.maminfaruq.datasiswa.utils.Constants;
 
-public class KelasAdapter extends RecyclerView.Adapter<KelasAdapter.ViewHolder>{
+public class KelasAdapter extends RecyclerView.Adapter<KelasAdapter.ViewHolder> {
 
     // TYPE 1 untuk makanan baru
     public static final int TYPE_1 = 1;
@@ -43,6 +43,7 @@ public class KelasAdapter extends RecyclerView.Adapter<KelasAdapter.ViewHolder>{
     private final List<KelasData> kelasDataList;
 
 
+
     public KelasAdapter(Integer viewType, Context context, List<KelasData> kelasDataList) {
         this.viewType = viewType;
         this.context = context;
@@ -51,23 +52,23 @@ public class KelasAdapter extends RecyclerView.Adapter<KelasAdapter.ViewHolder>{
 
     @NonNull
     @Override
-    public KelasAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view;
         switch (i) {
             case TYPE_1:
-                view = LayoutInflater.from(context).inflate(R.layout.item_kelas, viewGroup,false);
+                view = LayoutInflater.from(context).inflate(R.layout.item_kelas, viewGroup, false);
                 return new KelasNewsViewHolder(view);
             case TYPE_2:
-                view = LayoutInflater.from(context).inflate(R.layout.item_kelas, viewGroup,false);
+                view = LayoutInflater.from(context).inflate(R.layout.item_kelas, viewGroup, false);
                 return new KelasPopulerViewHolder(view);
             case TYPE_3:
-                view = LayoutInflater.from(context).inflate(R.layout.item_row, viewGroup,false);
+                view = LayoutInflater.from(context).inflate(R.layout.item_row, viewGroup, false);
                 return new KelasKategoriViewHolder(view);
             case TYPE_4:
-                view = LayoutInflater.from(context).inflate(R.layout.item_kelas, viewGroup,false);
+                view = LayoutInflater.from(context).inflate(R.layout.item_kelas, viewGroup, false);
                 return new KelasNewsViewHolder(view);
             case TYPE_5:
-                view = LayoutInflater.from(context).inflate(R.layout.item_kelas, viewGroup,false);
+                view = LayoutInflater.from(context).inflate(R.layout.item_kelas, viewGroup, false);
                 return new KelasByUserViewHolder(view);
             default:
                 return null;
@@ -75,7 +76,7 @@ public class KelasAdapter extends RecyclerView.Adapter<KelasAdapter.ViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull KelasAdapter.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
 
         final KelasData kelasData = kelasDataList.get(i);
 
@@ -89,6 +90,7 @@ public class KelasAdapter extends RecyclerView.Adapter<KelasAdapter.ViewHolder>{
 
                 kelasNewsViewHolder.titleTv.setText(kelasData.getNamaKelas());
                 kelasNewsViewHolder.txtView.setText(kelasData.getView());
+                kelasNewsViewHolder.tvKategori.setText(kelasData.getNamaKategori());
 
                 // Menampilkan waktu upload
                 kelasNewsViewHolder.insertTime.setText(newDate(kelasData.getInsertTime()));
@@ -110,13 +112,15 @@ public class KelasAdapter extends RecyclerView.Adapter<KelasAdapter.ViewHolder>{
                 kelasPopulerViewHolder.titleTv.setText(kelasData.getNamaKelas());
                 kelasPopulerViewHolder.txtView.setText(kelasData.getView());
 
+                kelasPopulerViewHolder.tvKategori.setText(kelasData.getNamaKategori());
+
                 // Menampilkan waktu upload
                 kelasPopulerViewHolder.insertTime.setText(newDate(kelasData.getInsertTime()));
 
                 kelasPopulerViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(context, "Kamu memilih" + kelasData.getNamaKelas(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Kamu memilih " + kelasData.getNamaKelas(), Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -132,7 +136,7 @@ public class KelasAdapter extends RecyclerView.Adapter<KelasAdapter.ViewHolder>{
                 kelasKategoriViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(context, "Kamu memilih" + kelasData.getNamaKategori(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Kamu memilih " + kelasData.getNamaKategori(), Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -145,13 +149,14 @@ public class KelasAdapter extends RecyclerView.Adapter<KelasAdapter.ViewHolder>{
 
                 kelasNewsViewHolder2.titleTv.setText(kelasData.getNamaKelas());
                 kelasNewsViewHolder2.txtView.setText(kelasData.getView());
+                kelasNewsViewHolder2.tvKategori.setText(kelasData.getNamaKategori());
 
                 kelasNewsViewHolder2.insertTime.setText(kelasData.getInsertTime());
 
                 kelasNewsViewHolder2.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(context, "Kamu memilih" + kelasData.getNamaKelas(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Kamu memilih " + kelasData.getNamaKelas(), Toast.LENGTH_SHORT).show();
                     }
                 });
                 break;
@@ -166,13 +171,15 @@ public class KelasAdapter extends RecyclerView.Adapter<KelasAdapter.ViewHolder>{
                 kelasByUserViewHolder.titleTv.setText(kelasData.getNamaKelas());
                 kelasByUserViewHolder.txtView.setText(kelasData.getView());
 
+                kelasByUserViewHolder.tvKategori.setText(kelasData.getNamaKategori());
+
                 // Menampilkan waktu upload
                 kelasByUserViewHolder.insertTime.setText(newDate(kelasData.getInsertTime()));
 
                 kelasByUserViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(context, "Kamu memilih" + kelasData.getNamaKelas(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Kamu memilih " + kelasData.getNamaKelas(), Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -233,6 +240,8 @@ public class KelasAdapter extends RecyclerView.Adapter<KelasAdapter.ViewHolder>{
         TextView insertTime;
         @BindView(R.id.txt_view)
         TextView txtView;
+        @BindView(R.id.tv_kategori)
+        TextView tvKategori;
 
 
         public KelasNewsViewHolder(View view) {
@@ -251,6 +260,8 @@ public class KelasAdapter extends RecyclerView.Adapter<KelasAdapter.ViewHolder>{
         TextView insertTime;
         @BindView(R.id.txt_view)
         TextView txtView;
+        @BindView(R.id.tv_kategori)
+        TextView tvKategori;
 
         public KelasPopulerViewHolder(View view) {
             super(view);
@@ -280,6 +291,8 @@ public class KelasAdapter extends RecyclerView.Adapter<KelasAdapter.ViewHolder>{
         TextView insertTime;
         @BindView(R.id.txt_view)
         TextView txtView;
+        @BindView(R.id.tv_kategori)
+        TextView tvKategori;
 
 
         public KelasByUserViewHolder(View view) {

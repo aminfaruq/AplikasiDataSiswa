@@ -1,7 +1,9 @@
 package id.co.maminfaruq.datasiswa.ui.home;
 
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -11,19 +13,24 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import id.co.maminfaruq.datasiswa.R;
 import id.co.maminfaruq.datasiswa.adapter.KelasAdapter;
 import id.co.maminfaruq.datasiswa.model.login.kelas.KelasData;
+import id.co.maminfaruq.datasiswa.ui.upload.UploadActivity;
 
 /**
  * A simple {@link Fragment} subclass.
  */
+@SuppressLint("RestrictedApi")
 public class HomeView extends Fragment implements HomeContract.View {
 
     @BindView(R.id.fab)
@@ -35,6 +42,12 @@ public class HomeView extends Fragment implements HomeContract.View {
     RecyclerView rvNew;
     @BindView(R.id.rv_popular)
     RecyclerView rvPopular;
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
+    @BindView(R.id.baruDitambahkan)
+    TextView baruDitambahkan;
+    @BindView(R.id.Terpopuler)
+    TextView Terpopuler;
 
     private ProgressDialog progressDialog;
     private HomePresenter homePresenter = new HomePresenter(this);
@@ -63,16 +76,31 @@ public class HomeView extends Fragment implements HomeContract.View {
 
     @Override
     public void showProgress() {
-        progressDialog = new ProgressDialog(getContext());
+        /*progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Loading ...");
         progressDialog.setCancelable(false);
-        progressDialog.show();
+        progressDialog.show();*/
+        fab.setVisibility(View.GONE);
+        rvNew.setVisibility(View.GONE);
+        rvPopular.setVisibility(View.GONE);
+        rvCategory.setVisibility(View.GONE);
+        baruDitambahkan.setVisibility(View.GONE);
+        Terpopuler.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
 
     }
 
     @Override
     public void hideProgress() {
-        progressDialog.dismiss();
+        //progressDialog.hide();
+        fab.setVisibility(View.VISIBLE);
+        rvNew.setVisibility(View.VISIBLE);
+        rvPopular.setVisibility(View.VISIBLE);
+        rvCategory.setVisibility(View.VISIBLE);
+        baruDitambahkan.setVisibility(View.VISIBLE);
+        Terpopuler.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.GONE);
+
 
     }
 
@@ -106,5 +134,21 @@ public class HomeView extends Fragment implements HomeContract.View {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @OnClick(R.id.fab)
+    public void onViewClicked() {
+        startActivity(new Intent(getContext(), UploadActivity.class));
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        homePresenter.getListKelasnews();
+        homePresenter.getListKelasPolular();
+        homePresenter.getListKelasKategori();
+
     }
 }
