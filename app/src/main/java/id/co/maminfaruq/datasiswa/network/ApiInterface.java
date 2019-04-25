@@ -1,9 +1,11 @@
 package id.co.maminfaruq.datasiswa.network;
 
 import id.co.maminfaruq.datasiswa.model.login.LoginResponse;
+import id.co.maminfaruq.datasiswa.model.login.kelas.KelasResponse;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface ApiInterface {
@@ -39,4 +41,15 @@ public interface ApiInterface {
             @Field("jenkel") String jenkel,
             @Field("no_telp") String notelp
     );
+
+    @GET("getkategori.php")
+    Call<KelasResponse> getKategoriKelas();
+
+    @GET("getdatakelas.php")
+    Call<KelasResponse> getKelasBaru();
+
+    @GET("getkelaspopuler.php")
+    Call<KelasResponse> getKelasPopuler();
+
+
 }

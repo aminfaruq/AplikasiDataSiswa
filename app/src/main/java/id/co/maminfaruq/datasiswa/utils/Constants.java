@@ -2,7 +2,7 @@ package id.co.maminfaruq.datasiswa.utils;
 
 public class Constants {
     // Base url
-    public static final String BASE_URL = "http://192.168.70.82/data_siswa/";
+    public static final String BASE_URL = "http://192.168.70.254/data_siswa/";
     public static final String KEY_LOGIN = "KEY_LOGIN";
 
     // KEY UNTUK SHARED PREFERENCE
